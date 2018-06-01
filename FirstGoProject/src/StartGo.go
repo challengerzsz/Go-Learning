@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 	"fmt"
-	"strings"
 	"log"
+	"strings"
 )
 
 func sayHello(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +22,7 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//写入响应
-	fmt.Fprint(w, "Hello Go")
+	fmt.Fprint(w, "Hello test")
 
 }
 

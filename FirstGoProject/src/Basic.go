@@ -6,7 +6,7 @@ import (
 )
 
 
-//            返回值列表
+// 多返回值
 func GetName () (firstName, lastName, nickName string) {
 	return "aaa", "bbb", "xxx"
 }

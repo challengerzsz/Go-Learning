@@ -1,12 +1,18 @@
 package src
 
 import (
+	"fmt"
 	"io"
+	"math"
 	"os"
 )
 
 func GetName() (firstName, lastName, nickName string) {
 	return "May", "zsz", "jtt"
+}
+
+func Equals(v1, v2, p float64) bool  {
+	return math.Abs(v1 - v2) < p
 }
 
 func main() {
@@ -98,5 +104,64 @@ func main() {
 	var v20 bool
 	v20 = true
 	v21 := (1 == 2)
+
+
+	// int 和 int64属于两种不同类型 编译期会将互相赋值进行报错
+	var int1 int64 = 100
+	// int2会被自动确定为int
+	int2 := 100
+	int1 = int2
+	// 使用强转可解决
+	int1 = int64(int2)
+
+	// 浮点型 float32 => float float63 => double
+	var fvalue1 float32
+	fvalue1 = 12
+	// 自动推导时 如果不加小数点则会确定为类型int
+	fvalue2 := 12.0
+
+
+	// 复数类型
+	var value4 complex64
+	value4 = 3.2 + 12i
+	value5 := 3.2 + 12i
+	// complex 计算实部和虚部组成的复数
+	value6 := complex(3.2, 12)
+
+	// 使用函数求复数的实部和虚部
+	result := real(value6)
+	result1 := imag(value6)
+
+	// 字符串
+	var str string
+	str = "hello world"
+	ch := str[0]
+	fmt.Printf("first letter is %c", ch)
+	// 字符串内容不能再初始化之后被修改
+	//str[0] = 'a'
+	length := len(str)
+
+	// 遍历数组
+	for i := 0; i < length; i++ {
+		fmt.Print(str[i])
+	}
+
+	// 以Unicode编码进行遍历
+	for i, ch := range str {
+		// ch类型为rune rune代表单个Unicode字符
+		fmt.Println(i, ch)
+	}
+
+	// 数组
+	const N = 1
+	var array1 [32]byte
+	// 复杂类型数组
+	var array2 [2 * N] struct{x, y int32}
+	// 指针数组
+	var array3 [1000] *float64
+	// 二维数组
+	var array4 [3][5] int
+	// 等同于[2] ([2] ([2] float64))
+	var array5 [2][2][2] float64
 
 }

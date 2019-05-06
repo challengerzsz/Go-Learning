@@ -2,17 +2,15 @@ package src
 
 import (
 	"fmt"
-	"io"
 	"math"
-	"os"
 )
 
 func GetName() (firstName, lastName, nickName string) {
 	return "May", "zsz", "jtt"
 }
 
-func Equals(v1, v2, p float64) bool  {
-	return math.Abs(v1 - v2) < p
+func Equals(v1, v2, p float64) bool {
+	return math.Abs(v1-v2) < p
 }
 
 func main() {
@@ -105,7 +103,6 @@ func main() {
 	v20 = true
 	v21 := (1 == 2)
 
-
 	// int 和 int64属于两种不同类型 编译期会将互相赋值进行报错
 	var int1 int64 = 100
 	// int2会被自动确定为int
@@ -119,7 +116,6 @@ func main() {
 	fvalue1 = 12
 	// 自动推导时 如果不加小数点则会确定为类型int
 	fvalue2 := 12.0
-
 
 	// 复数类型
 	var value4 complex64
@@ -156,12 +152,60 @@ func main() {
 	const N = 1
 	var array1 [32]byte
 	// 复杂类型数组
-	var array2 [2 * N] struct{x, y int32}
+	var array2 [2 * N]struct{ x, y int32 }
 	// 指针数组
-	var array3 [1000] *float64
+	var array3 [1000]*float64
 	// 二维数组
-	var array4 [3][5] int
+	var array4 [3][5]int
 	// 等同于[2] ([2] ([2] float64))
-	var array5 [2][2][2] float64
+	var array5 [2][2][2]float64
+
+	// 定义数组切片
+	// 基于数组
+	var myArray [10]int = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	// 基于数组前5个元素创建的切片
+	var mySlice []int = myArray[:5]
+	fmt.Println("Elements of myArray")
+	for _, v := range myArray {
+		fmt.Print(v, " ")
+	}
+
+	fmt.Println("Elements of mySlice")
+	for _, v := range mySlice {
+		fmt.Print(v, " ")
+	}
+
+	// 直接创建切片
+	// 创建元素个数为5个的切片，元素初始值为0
+	mySlice1 := make([]int, 5)
+	// 创建初始元素为5个的切片，元素初始值为0，并预留10个元素的存储空间
+	mySlice2 := make([]int, 5, 10)
+	// 直接创建切片，会创建一个匿名数组
+	mySlice3 := []int{1, 2, 3, 4, 5}
+
+	// 10
+	sliceAllocateLen := cap(mySlice2)
+	// 5
+	sliceLen := len(mySlice2)
+
+	// append第二个参数是可变长参数
+	mySlice := append(mySlice, 1, 2, 3, 4, 5)
+
+	// 第二个参数是可变长参数所以加上...
+	mySlice := append(mySlice, mySlice2...)
+
+	// 基于数组切片创造数组切片
+	oldSlice := []int{1, 2, 3, 4, 5}
+	newSlice := oldSlice[:3]
+	// 同样可以用以下写法，只要不超过cap()函数返回值，都可以创建，使用0补全
+	newSlice := oldSlice[:10]
+
+	// 切片内容复制
+	slice4 := []int{1, 2, 3, 4, 5}
+	slice5 := []int{5, 6, 7}
+	// 将slice5的3个元素复制到slice4的前三个元素位置
+	copy(slice4, slice5)
+	// 将slice4的前3个元素复制给slice5
+	copy(slice5, slice4)
 
 }

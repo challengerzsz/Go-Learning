@@ -11,7 +11,7 @@ func (node *treeNode) print() {
 	fmt.Print(node.Value)
 }
 
-func createNode(value int) *treeNode {
+func CreateNode(value int) *treeNode {
 	// go语言支持返回局部变量的地址给外部使用
 	return &treeNode{Value: value}
 }

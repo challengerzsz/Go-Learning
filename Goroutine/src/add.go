@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func Add(x, y int) {
 	z := x + y
@@ -13,4 +15,6 @@ func main() {
 	for i := 0; i < 10; i++ {
 		go Add(i, i)
 	}
+
+	//fmt.Println(runtime.NumCPU())
 }

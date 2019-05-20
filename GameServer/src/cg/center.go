@@ -15,6 +15,9 @@ type Message struct {
 	Content string `json:"content"`
 }
 
+type Room struct {
+}
+
 type CenterServer struct {
 	servers map[string]ipc.Server
 	players []*Player
